@@ -1,0 +1,6 @@
+<h1>Sign In</h1>
+<%= form_for :session, action: 'create' do |form| %>
+  <%= form.label :username %>
+  <%= form.text_field :username, required: "required" %>
+  <%= form.submit "Sign In" %>
+<% end %>

@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <% if flash[:notice] || flash[:alert] %>
+      <div class="<%= "flash-container #{flash.alert ? 'error' : ''}".strip %>">
+        <p class="<%= "flash-message #{flash.alert ? 'error' : ''}".strip %>"><%= "#{flash.notice}#{flash.alert}" %></p>
+      </div><!-- End flash container -->
+    <% end %>
     <%= yield %>
   </body>
 </html>
