@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post 'signin', to: 'sessions#create'
   delete 'signout', to: 'sessions#destroy', as: 'signout'
 
-  resources :chatrooms
+  mount ActionCable.server => '/cable'
+
+  resources :chatrooms, params: :slug
   resources :messages
   resources :users
 end

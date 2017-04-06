@@ -1,9 +1,14 @@
 <h1><%= "Chatroom #{@chatroom.id} - #{@chatroom.topic}" %></h1>
 
 <h3>Messages:</h3>
-<%# @messages.each do |message| %>
-<% @chatroom.messages.each do |message| %>
-<div class="message"><%= message %></div>
-<% end %>
+<div class="panel-body" id="messages">
+  <%= render partial: 'messages/message', collection: @chatroom.messages %>
+</div>
 
 <hr>
+<%= form_for @message, remote: true, authenticity_token: true do |f| %>
+  <%= f.label :your_message %>:
+  <%= f.text_area :content, class: "form-control", data: { textarea: "message" } %>
+  <%= f.hidden_field :chatroom_id, value: @chatroom.id %>
+  <%= f.submit "send", class: "btn btn-primary", data: { send: "message" } %>
+<% end %>
