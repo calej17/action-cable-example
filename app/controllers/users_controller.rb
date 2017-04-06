@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter :authenticate_user, raise: false
   before_filter :save_login_state, only: [:new, :create]
 
   def new
